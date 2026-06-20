@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 360" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="880" height="360" fill="#1e1b2e"/>
+  <text x="440" y="40" fill="#ffffff" font-size="22" font-weight="bold" text-anchor="middle">ping-service — Architecture (Track B: Local Minikube + ngrok)</text>
+
+  <!-- Developer -->
+  <rect x="30" y="120" width="150" height="80" rx="10" fill="#2d2a40" stroke="#ff4d3d" stroke-width="2"/>
+  <text x="105" y="155" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">Developer</text>
+  <text x="105" y="178" fill="#bdb9d1" font-size="12" text-anchor="middle">git push</text>
+
+  <!-- GitHub + Actions -->
+  <rect x="230" y="100" width="170" height="120" rx="10" fill="#2d2a40" stroke="#ff4d3d" stroke-width="2"/>
+  <text x="315" y="130" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">GitHub</text>
+  <text x="315" y="155" fill="#bdb9d1" font-size="12" text-anchor="middle">Actions CI:</text>
+  <text x="315" y="174" fill="#bdb9d1" font-size="12" text-anchor="middle">test → build</text>
+  <text x="315" y="193" fill="#bdb9d1" font-size="12" text-anchor="middle">→ push GHCR</text>
+
+  <!-- Minikube cluster -->
+  <rect x="450" y="80" width="230" height="200" rx="10" fill="#2d2a40" stroke="#3d7a6e" stroke-width="2"/>
+  <text x="565" y="108" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">Minikube (1-node k8s)</text>
+
+  <rect x="475" y="125" width="180" height="60" rx="8" fill="#211f30" stroke="#5a8f82" stroke-width="1.5"/>
+  <text x="565" y="150" fill="#ffffff" font-size="13" font-weight="bold" text-anchor="middle">Deployment</text>
+  <text x="565" y="170" fill="#bdb9d1" font-size="11" text-anchor="middle">2x pod (Flask + gunicorn)</text>
+
+  <rect x="475" y="200" width="180" height="55" rx="8" fill="#211f30" stroke="#5a8f82" stroke-width="1.5"/>
+  <text x="565" y="223" fill="#ffffff" font-size="13" font-weight="bold" text-anchor="middle">Service (NodePort)</text>
+  <text x="565" y="242" fill="#bdb9d1" font-size="11" text-anchor="middle">30080 → 8080</text>
+
+  <!-- ngrok + Internet -->
+  <rect x="730" y="120" width="120" height="80" rx="10" fill="#2d2a40" stroke="#ff4d3d" stroke-width="2"/>
+  <text x="790" y="150" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">ngrok</text>
+  <text x="790" y="172" fill="#bdb9d1" font-size="11" text-anchor="middle">public URL</text>
+  <text x="790" y="188" fill="#bdb9d1" font-size="11" text-anchor="middle">→ internet</text>
+
+  <!-- Arrows -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#ff4d3d"/>
+    </marker>
+  </defs>
+  <line x1="180" y1="160" x2="228" y2="160" stroke="#ff4d3d" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="400" y1="160" x2="448" y2="160" stroke="#ff4d3d" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="680" y1="160" x2="728" y2="160" stroke="#ff4d3d" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <text x="424" y="150" fill="#8f8aa8" font-size="10" text-anchor="middle">image</text>
+  <text x="704" y="150" fill="#8f8aa8" font-size="10" text-anchor="middle">tunnel</text>
+
+  <text x="440" y="320" fill="#8f8aa8" font-size="12" text-anchor="middle">GET /ping → pong   ·   GET /healthz → {"status":"ok"} (liveness/readiness probes)</text>
+</svg>
