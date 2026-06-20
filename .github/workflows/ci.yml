@@ -33,7 +33,7 @@ jobs:
     permissions:
       contents: read
       packages: write  # needed to push to GHCR
-    steps:
+  steps:
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -44,11 +44,15 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Lowercase image name
+        id: img
+        run: echo "repo=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> "$GITHUB_OUTPUT"
+
       - name: Build and push image
         uses: docker/build-push-action@v6
         with:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}:latest
-            ghcr.io/${{ github.repository }}:${{ github.sha }}
+            ghcr.io/${{ steps.img.outputs.repo }}:latest
+            ghcr.io/${{ steps.img.outputs.repo }}:${{ github.sha }}
