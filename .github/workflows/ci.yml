@@ -1,6 +1,5 @@
 name: CI
 
-# Run on every push and pull request to main.
 on:
   push:
     branches: [main]
@@ -29,11 +28,11 @@ jobs:
   docker:
     name: Docker Build & Push
     runs-on: ubuntu-latest
-    needs: test  # only build the image if tests pass
+    needs: test
     permissions:
       contents: read
-      packages: write  # needed to push to GHCR
-  steps:
+      packages: write
+    steps:
       - name: Checkout
         uses: actions/checkout@v4
 
